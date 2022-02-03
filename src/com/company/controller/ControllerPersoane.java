@@ -1,6 +1,8 @@
 package com.company.controller;
 
-import com.company.model.*;
+import com.company.model.Persoana.Angajat;
+import com.company.model.Persoana.Client;
+import com.company.model.Persoana.Persoana;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -41,10 +43,10 @@ public class ControllerPersoane {
         }
     }
 
-    public String toSvePers(){
+    public String toString(){
         String text="";
         for(Persoana p:listaPersoane){
-            text+=p.toSave()+ "\n";
+            text+=p + "\n";
         }
         return text;
     }
@@ -55,11 +57,37 @@ public class ControllerPersoane {
 
             FileWriter fileWriter = new FileWriter(file);
             PrintWriter printWriter = new PrintWriter(file);
-            printWriter.print(toSvePers());
+            printWriter.print(toString());
             printWriter.close();
 
         } catch (Exception e) {
 
         }
+    }
+    public void add(Persoana p){
+        listaPersoane.add(p);
+    }
+
+    //facem o functie care verifica cati angajati avem
+
+    public int verifAngajati(){
+        int cont=0;
+        for(Persoana persoana : listaPersoane){
+            if(persoana instanceof Angajat){
+                cont++;
+
+            }
+        }
+        return cont;
+    }
+    public int verifClienti(){
+        int cont=0;
+        for(Persoana persoana : listaPersoane){
+            if(persoana instanceof Client){
+                cont++;
+
+            }
+        }
+        return cont;
     }
 }

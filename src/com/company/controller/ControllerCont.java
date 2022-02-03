@@ -1,8 +1,8 @@
 package com.company.controller;
 
-import com.company.model.Cont;
-import com.company.model.ContCredit;
-import com.company.model.ContDebit;
+import com.company.model.Cont.Cont;
+import com.company.model.Cont.ContCredit;
+import com.company.model.Cont.ContDebit;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -43,10 +43,11 @@ public class ControllerCont {
         }
     }
 
-    public String toSveCont(){
+    @Override
+    public String toString(){
         String text="";
         for(Cont c:listaConturi){
-            text+=c.toSaveCont()+ "\n";
+            text+=c + "\n";
         }
         return text;
     }
@@ -57,7 +58,7 @@ public class ControllerCont {
 
             FileWriter fileWriter = new FileWriter(file);
             PrintWriter printWriter = new PrintWriter(file);
-            printWriter.print(toSveCont());
+            printWriter.print(toString());
             printWriter.close();
 
         } catch (Exception e) {
@@ -65,4 +66,17 @@ public class ControllerCont {
         }
     }
 
+    public void add(Cont cont){
+        listaConturi.add(cont);
+    }
+    // o functie care primeste id persoana si returneaza contul , returneaza soldul
+
+
+//    public int returnareSold(int id){
+//        for (Cont cont : listaConturi){
+//            if(cont instanceof ContDebit && ){
+//
+//            }
+//        }
+//    }
 }

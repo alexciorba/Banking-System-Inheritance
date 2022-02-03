@@ -1,4 +1,4 @@
-package com.company.model;
+package com.company.model.Persoana;
 
 public class Persoana {
 
@@ -6,19 +6,25 @@ public class Persoana {
     private String nume;
     private String prenume;
     private String tip;
+    private String mail;
+    private String pass;
 
-    public Persoana(int id,String tip,String nume,String prenume){
-        this.id=id;
+    public Persoana(int id, String tip, String nume, String prenume,String mail,String pass){
+        this.mail=mail;
+        this.pass=pass;
         this.tip=tip;
         this.nume=nume;
         this.prenume=prenume;
+        this.id=id;
     }
 
     public Persoana(String line){
         this(Integer.parseInt(line.split(",")[0]),
                 line.split(",")[1],
                 line.split(",")[2],
-                line.split(",")[3]);
+                line.split(",")[3],
+                line.split(",")[4],
+                line.split(",")[5]);
     }
 
     public void setNume(String nume) {
@@ -37,6 +43,22 @@ public class Persoana {
         this.id = id;
     }
 
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
     public String getNume() {
         return this.nume;
     }
@@ -53,19 +75,26 @@ public class Persoana {
         return this.id;
     }
 
+
+
     public String descrierePersoana(){
         String text="";
-        text+="id : " + id + "\n";
+        text+="id USER: " + id + "\n";
         text+="tipul : " + tip + "\n";
         text+="nume : " + nume + "\n" ;
         text+="prenume : " + prenume +"\n";
+
         return  text;
     }
 
-    public String toSave(){
-        String text=id + "," + tip + "," + nume +"," +prenume;
+    public String toString(){
+        String text= id + "," + tip + "," + nume +"," +prenume ;
         return  text;
     }
 
+    public boolean equals(Object o){
+        Persoana p=(Persoana) o;
+        return p.getId()==this.id && p.getNume().equals(this.nume) && p.getPrenume().equals(this.prenume) && p.getTip().equals(this.tip) ;
+    }
 
 }
