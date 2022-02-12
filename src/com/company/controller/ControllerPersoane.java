@@ -51,7 +51,7 @@ public class ControllerPersoane {
         return text;
     }
 
-    public void saveCont() {
+    public void savePers() {
         File file = new File("C:\\Users\\Alex 1\\Desktop\\Full Stack Java\\OOP\\Mostenirea\\ProiectBanking\\src\\com\\company\\source\\persoane.txt");
         try {
 
@@ -89,5 +89,22 @@ public class ControllerPersoane {
             }
         }
         return cont;
+    }
+public int nextPersonVlblId(){
+        if(listaPersoane.size()!=0){
+            return listaPersoane.get(listaPersoane.size()-1).getId()+1;
+        }return 1;
+}
+
+//facem o functie care verifica daca exista o persoana cu mailul si parola data
+
+    public Persoana verificareExistenta(String mail,String pass){
+        for(Persoana persoana : listaPersoane){
+            if(persoana.getMail().equals(mail) && persoana.getPass().equals(pass)){
+                return persoana;
+            }
+
+        }
+        return null;
     }
 }
